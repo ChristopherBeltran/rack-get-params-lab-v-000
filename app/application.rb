@@ -19,12 +19,14 @@ class Application
         resp.write "#{item}\n"
     elsif req.path.match(/add/)
     search_term = req.params["item"]
- 
-      if @@items.include?(search_term)
-        resp.write "#{search_term} is one of our items"
+        if @@items.include?(search_term)
+        resp.write "#{search_term} is already added"
+      else
+        @@cart << search_term
     else
       resp.write "Path Not Found"
     end
+  end 
 
     resp.finish
   end
