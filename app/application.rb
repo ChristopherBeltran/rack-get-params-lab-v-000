@@ -10,18 +10,22 @@ case
     when req.path.match(/items/)
       @@items.each do |item|
         resp.write "#{item}\n"
+      end 
     when req.path.match(/search/)
       search_term = req.params["q"]
       resp.write handle_search(search_term)
+    end 
     when req.path.match(/cart/)
     @@cart.each do |item|
         resp.write "#{item}\n"
+      end 
     when req.path.match(/add/)
     search_term = req.params["item"]
         if @@items.include?(search_term)
         resp.write "#{search_term} is already added"
       else
         @@cart << search_term
+      end 
     else
       resp.write "Path Not Found"
     end
